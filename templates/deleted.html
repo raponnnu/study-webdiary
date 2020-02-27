@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>削除完了</title>
+        <link rel = "stylesheet"
+              href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel = "stylesheet"
+              href="style.css">
+    </head>
+    <body>
+    <h1>
+        <a href="start" id="titlelogo">学習Web日報</a>
+    </h1>
+        <p>ユーザーは削除されました。</p>
+        <p><a href="/start">戻る</a></p>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+        </script>
+        <script>        
+            window.onload = function(){ 
+                document.cookie = "name=\"\"";
+                document.cookie = "password=\"\"";
+            };
+        </script>
+    </body>
+</html>

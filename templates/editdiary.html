@@ -1,0 +1,275 @@
+<html>
+    <head>
+        <title>入力</title>
+        <style>
+            input {display: block;}
+            ul {list-style: none;}
+        </style>
+        <link rel = "stylesheet"
+              href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel = "stylesheet"
+              href="style.css">
+    </head>
+    <body>
+    <h1>
+        <a href="start" id="titlelogo">学習Web日報</a>
+    </h1>
+        <form id="diary" name="diary">
+        <p>①日付を選択してください</p>
+        <select id="year" name="nyear">
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+        </select>年
+        <select id="month" name="nmonth">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>月
+        <select id="day" name="nday">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+        </select>日
+        <input type="button" value="確定" onclick="clickBtn1()" class="setdata">
+        <p>
+        <p>②勉強内容・時間を選択・入力してください</p>
+            <div><div id="cmyear"  class="setdata"></div>年 <div id="cmmonth"  class="setdata"></div>月 <div id="cmday"  class="setdata"></div>日</div>
+        <input type="button" value="翌日へ" onclick="nextBtn()"  class="setdata">
+        <input type="button" value="前日へ" onclick="backBtn()"  class="setdata">
+            <dt>勉強時間</dt>
+            <dd>
+                <select id="h" name="studyh">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>時間
+                <select id="m" name="studym">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select>分
+            </dd>
+            <dt>トピック</dt>
+            <dd>
+                <input type="text" id="topicid" name="topic" size="60" maxlength="30" />
+            </dd>
+            <dt>一言</dt>
+            <dd><textarea name="come" rows="10" cols="50" id="comment"></textarea></dd>
+            <div id="passerr"></div>
+            <input type="submit" value="確定" />
+            <p><a href="mypage"  class="options">戻る</a></p>
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+        <script>
+                function clickBtn1(){
+                   const yeari = document.diary.nyear;
+	               const num1 = yeari.selectedIndex;
+	               const yearstring = yeari.options[num1].value;
+                    
+                    
+                   const monthi = document.diary.nmonth;
+	               const num2 = monthi.selectedIndex;
+	               const monthstring = monthi.options[num2].value;
+                    
+                   const dayi = document.diary.nday;
+                    const num3 = dayi.selectedIndex;
+	               const daystring = dayi.options[num3].value;
+                    
+                   if(moment([Number(yearstring),Number(monthstring), Number(daystring)], 'YYYY-MM-DD').isValid()){
+                        var date = yearstring + "-" + (("00"+monthstring).slice(-2)) + "-" + (("00"+daystring).slice(-2));
+                         socket.send(JSON.stringify({"Day":date,"Input": false,}));
+                    }else{
+                        alert("存在しない日付です。");
+                    }
+                }
+                function nextBtn(){
+                    var cmyearstring = document.getElementById("cmyear");
+                    var cmyear = Number(cmyearstring.textContent);
+                    var cmmonthstring = document.getElementById("cmmonth");
+                    var cmmonth = Number(cmmonthstring.textContent);
+                    var cmdaystring = document.getElementById("cmday");
+                    var cmday = Number(cmdaystring.textContent);
+                    var datestring = cmyearstring.textContent + "-" + (("00"+cmmonthstring.textContent).slice(-2)) + "-" + (("00"+cmdaystring.textContent).slice(-2));
+                    var date = moment(datestring);
+                    date.add(1, "days").format("YYYY-MM-DD");
+                    socket.send(JSON.stringify({"Day":date.format("YYYY-MM-DD"),"Input": false,}));
+                }
+                function backBtn(){
+                    var cmyearstring = document.getElementById("cmyear");
+                    var cmyear = Number(cmyearstring.textContent);
+                    var cmmonthstring = document.getElementById("cmmonth");
+                    var cmmonth = Number(cmmonthstring.textContent);
+                    var cmdaystring = document.getElementById("cmday");
+                    var cmday = Number(cmdaystring.textContent);
+                    var datestring = cmyearstring.textContent + "-" + (("00"+cmmonthstring.textContent).slice(-2)) + "-" + (("00"+cmdaystring.textContent).slice(-2));
+                    var date = moment(datestring);
+                    date.add(-1, "days").format("YYYY-MM-DD");
+                    socket.send(JSON.stringify({"Day":date.format("YYYY-MM-DD"),"Input": false,}));
+                }
+            
+                var socket = null;
+            
+            $(function(){
+                var topic = $("#topicid");
+                var comment= $("#comment");
+                $("#diary").submit(function(){
+                    if (!socket){
+                        alert("エラー：WebSocket接続が行われていません")
+                    }
+                    var cmyearstring = document.getElementById("cmyear");
+                    var cmyear = Number(cmyearstring.textContent);
+                    var cmmonthstring = document.getElementById("cmmonth");
+                    var cmmonth = Number(cmmonthstring.textContent);
+                    var cmdaystring = document.getElementById("cmday");
+                    var cmday = Number(cmdaystring.textContent);
+                    var date = cmyearstring.textContent + "-" + (("00"+cmmonthstring.textContent).slice(-2)) + "-" + (("00"+cmdaystring.textContent).slice(-2));
+                    
+                   const houri = document.diary.studyh;
+	               const numh = houri.selectedIndex;
+	               const hourstring = houri.options[numh].value;
+                    var shour = Number(hourstring);
+                    
+                   const minutei = document.diary.studym;
+	               const numm = minutei.selectedIndex;
+	               const minutestring = minutei.options[numm].value;
+                    var sminute = Number(minutestring);
+                    
+                    socket.send(JSON.stringify({"Day": date,"Hour": shour,"Minute": sminute,"Topic": topic.val(),"Comment": comment.val(),"Input":true}));
+                    return false;
+                })
+                window.onload = function(){
+                    if (!window["WebSocket"]){
+                        alert("エラー：WebSocketに対応していないブラウザです");
+                    }else{
+                        socket = new WebSocket("ws://{{.Host}}/editeddiary");
+	                    socket.onopen = function( event ) {
+                            moment.locale('ja');
+                            socket.send(JSON.stringify({"Day":(moment().format('YYYY-MM-DD')),"Input": false,}));
+                            
+                        }
+                        socket.onmessage = function(e){
+                            var diary = eval("(" + e.data + ")")
+                            var location;
+                            if (diary.Input){
+                                window.location.href = 'http://{{.Host}}/commit';
+                            }else{
+		                          const p1 = document.createElement("p");
+	                               if (cmyear.hasChildNodes()){
+		                              cmyear.removeChild(cmyear.firstChild);
+	                               }
+                                  var startyear = Number(diary.Day.slice(0,4));
+                                  document.diary.nyear.selectedIndex = startyear - 2018;
+		                          const textyear = document.createTextNode(startyear);
+		                          p1.appendChild(textyear);
+		                          cmyear.appendChild(p1);
+                                
+		                          const p2 = document.createElement("p");
+	                               if (cmmonth.hasChildNodes()){
+		                              cmmonth.removeChild(cmmonth.firstChild);
+	                               }
+                                  var startmonth = Number(diary.Day.slice(5,7));
+                                  document.diary.nmonth.selectedIndex = startmonth - 1;
+		                          const textmonth = document.createTextNode(startmonth);
+		                          p2.appendChild(textmonth);
+		                          cmmonth.appendChild(p2);
+                       
+		                          const p3 = document.createElement("p");
+	                               if (cmday.hasChildNodes()){
+		                              cmday.removeChild(cmday.firstChild);
+	                               }
+                                  var startday = Number(diary.Day.slice(8,10));
+                                  document.diary.nday.selectedIndex = startday - 1;
+		                          const textday = document.createTextNode(startday);
+		                          p3.appendChild(textday);
+		                          cmday.appendChild(p3);
+                                
+                                  var starthour = diary.Hour;
+                                  document.diary.studyh.selectedIndex = starthour;
+                                  var startminute = diary.Minute;
+                                  document.diary.studym.selectedIndex = startminute/10;
+                                
+	                              document.diary.topic.value = diary.Topic;
+	                              document.diary.come.value = diary.Comment;
+                                
+                                
+                                
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
