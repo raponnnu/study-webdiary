@@ -5,6 +5,7 @@ import(
     "log"
     "fmt"
     "github.com/gorilla/websocket"
+
 )
 
 
@@ -53,7 +54,6 @@ func (c *client) read(){
     for{
         var usr *user
         if err := c.socket.ReadJSON(&usr); err == nil{
-            fmt.Println("ya")
             usr.Inputuser()
             if err := c.socket.WriteJSON(&usr); err == nil{
                 break
