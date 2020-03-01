@@ -211,10 +211,10 @@
                         var user = eval("(" + e.data + ")")
                         var location;
                         if (user.Check) {
-                            window.location.href = 'http://{{.Host}}/makeduser';
+                            window.location.href = 'https://{{.Host}}/makeduser';
                         }else{
                             alert("そのユーザー名は既に存在します");
-                            window.location.href = 'http://{{.Host}}/makeuser';
+                            window.location.href = 'https://{{.Host}}/makeuser';
                         }
                     }
                 }
