@@ -11,7 +11,7 @@ import(
 
 func (u *user) Inputuser(){
     
-    db, err := sql.Open("postgres", "user=postgres dbname=mydb password=sergtsop sslmode=disable")
+    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
     if err != nil{
         log.Fatal(err)
     }
@@ -44,7 +44,7 @@ func (u *user) Inputuser(){
 }
 
 func (u *user) Access(){
-    db, err := sql.Open("postgres", "user=postgres dbname=mydb password=sergtsop sslmode=disable")
+    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
     fmt.Println(u)
     if err != nil{
         log.Fatal(err)
@@ -86,7 +86,7 @@ func (u *user) Access(){
 }
 
 func (u *user) Delete(){
-    db, err := sql.Open("postgres", "user=postgres dbname=mydb password=sergtsop sslmode=disable")
+    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
     fmt.Println(u)
     if err != nil{
         log.Fatal(err)
@@ -105,7 +105,7 @@ func (u *user) Delete(){
 
 func (u *user) Showuser(){
     
-    db, err := sql.Open("postgres", "user=postgres dbname=mydb password=sergtsop sslmode=disable")
+    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
     if err != nil{
         log.Fatal(err)
     }
@@ -126,7 +126,7 @@ func (u *user) Showuser(){
 
 func (u *user)Updateuser(){
     
-    db, err := sql.Open("postgres", "user=postgres dbname=mydb password=sergtsop sslmode=disable")
+    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
     if err != nil{
         log.Fatal(err)
     }
