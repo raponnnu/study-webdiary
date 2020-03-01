@@ -50,7 +50,7 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request){
 }
 
 func main(){
-    var addr = flag.String("addr","https://study-webdiary.herokuapp.com","アプリケーションのアドレス")
+    var addr = flag.String("addr","study-webdiary.herokuapp.com","アプリケーションのアドレス")
     flag.Parse() //フラグを解釈します
     
     makedata := newInputdata()
@@ -83,7 +83,7 @@ func main(){
     
     //Webサーバーを開始します
     log.Println("Webサーバーを開始します。ポート： ", *addr)
-    if err := http.ListenAndServe("https://study-webdiary.herokuapp.com", nil); err != nil{
+    if err := http.ListenAndServe("study-webdiary.herokuapp.com", nil); err != nil{
         log.Fatal("ListenAndServe",err)
     }
 }
