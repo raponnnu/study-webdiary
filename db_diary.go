@@ -9,8 +9,8 @@ import(
 )
 
 func (d *diary) inputDiary(){
-    
-    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
+   
+    db, err := sql.Open("postgres", "dbname=d7uaktin79dcf5 host=ec2-184-72-236-57.compute-1.amazonaws.com port=5432 user=zadrpmccdwzbjq password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=require")
     if err != nil{
         log.Fatal(err)
     }
@@ -40,8 +40,8 @@ func (d *diary) inputDiary(){
 }
 
 func (d *diary) outputDiary(){
-    
-    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
+   
+    db, err := sql.Open("postgres", "dbname=d7uaktin79dcf5 host=ec2-184-72-236-57.compute-1.amazonaws.com port=5432 user=zadrpmccdwzbjq password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=require")
     if err != nil{
         log.Fatal(err)
     }
@@ -76,8 +76,8 @@ func (d *diary) outputDiary(){
 }
 
 func (d *diarys) showDiary(){
-    
-    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
+   
+    db, err := sql.Open("postgres", "dbname=d7uaktin79dcf5 host=ec2-184-72-236-57.compute-1.amazonaws.com port=5432 user=zadrpmccdwzbjq password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=require")
     if err != nil{
         log.Fatal(err)
     }
@@ -111,7 +111,7 @@ func (d *diarys) showDiary(){
 
 func (d *diarys) showUser(){
     
-    db, err := sql.Open("postgres", "user=zadrpmccdwzbjq dbname=d7uaktin79dcf5 password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=disable")
+    db, err := sql.Open("postgres", "dbname=d7uaktin79dcf5 host=ec2-184-72-236-57.compute-1.amazonaws.com port=5432 user=zadrpmccdwzbjq password=b1f0d74eb636f9014724190aa77bca3548f482ff11fbd800251b1b48b3aaf1fc sslmode=require")
     if err != nil{
         log.Fatal(err)
     }
