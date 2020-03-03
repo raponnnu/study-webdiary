@@ -51,7 +51,11 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request){
 }
 
 func main(){
-    var addr = flag.String("addr",":" + os.Getenv("PORT"),"アプリケーションのアドレス")
+<<<<<<< HEAD
+    var addr = flag.String("addr",":" +os.Getenv("PORT"),"アプリケーションのアドレス")
+=======
+    var addr = flag.String("addr",os.Getenv("PORT"),"アプリケーションのアドレス")
+>>>>>>> Update main.go
     flag.Parse() //フラグを解釈します
     
     makedata := newInputdata()
@@ -84,7 +88,11 @@ func main(){
     
     //Webサーバーを開始します
     log.Println("Webサーバーを開始します。ポート： ", *addr)
-    if err := http.ListenAndServe(":" + os.Getenv("PORT"), nil); err != nil{
+<<<<<<< HEAD
+    if err := http.ListenAndServe(":" +os.Getenv("PORT"), nil); err != nil{
+=======
+    if err := http.ListenAndServe(os.Getenv("PORT"), nil); err != nil{
+>>>>>>> Update main.go
         log.Fatal("ListenAndServe",err)
     }
 }
