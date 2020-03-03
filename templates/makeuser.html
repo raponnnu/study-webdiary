@@ -207,10 +207,14 @@
                     alert("エラー：WebSocketに対応していないブラウザです");
                 }else{
 <<<<<<< HEAD
+<<<<<<< HEAD
                     socket = new WebSocket("wss://{{.Host}}/makeruser");
 =======
                     socket = new WebSocket("ws://{{.Host}}/makeruser");
 >>>>>>> Update makeuser.html
+=======
+                    socket = new WebSocket("wss://{{.Host}}/makeruser");
+>>>>>>> origin/master
                     socket.onmessage = function(e){
                         var user = eval("(" + e.data + ")")
                         var location;

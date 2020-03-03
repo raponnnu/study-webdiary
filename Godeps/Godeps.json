@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"ImportPath": "github.com/raponnnu/study-webdiary",
 	"GoVersion": "go1.13",
@@ -17,3 +18,24 @@
 		}
 	]
 }
+=======
+{
+	"ImportPath": "github.com/raponnnu/study-webdiary",
+	"GoVersion": "go1.13",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/websocket",
+			"Rev": "2788f0dbd16903de03cb8186e5c7d97b69ad387b"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Rev": "6807e777504f54ad073ecef66747de158294b639"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/bcrypt",
+			"Rev": "f78a839676152fd9f4863704f5d516195c18fc14"
+		}
+	]
+}
+>>>>>>> origin/master
