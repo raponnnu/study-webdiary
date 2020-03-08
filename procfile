@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 "web: $(study-webdiary `pwd`)" 
-=======
-"web: $(study-webdiary `pwd`)" 
->>>>>>> origin/master
