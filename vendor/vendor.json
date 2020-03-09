@@ -1,3 +1,25 @@
 {
-	"rootPath": "github.com/raponnnu/study-webdiary"
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "/b8Fw69AsJ3HgYjSxafhU5VrgGE=",
+			"path": "golang.org/x/sys/cpu",
+			"revision": "5c8b2ff67527cb88b770f693cebf3799036d8bc0",
+			"revisionTime": "2020-03-02T10:13:05Z"
+		},
+		{
+			"checksumSHA1": "WMdEuWDsHDpqcnYBf72fV2B+SDM=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "5c8b2ff67527cb88b770f693cebf3799036d8bc0",
+			"revisionTime": "2020-03-02T10:13:05Z"
+		},
+		{
+			"checksumSHA1": "ZYmvJ1qqXG5KHRKVs1tRsRMxj/Q=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "5c8b2ff67527cb88b770f693cebf3799036d8bc0",
+			"revisionTime": "2020-03-02T10:13:05Z"
+		}
+	],
+	"rootPath": "study-webdiary"
 }
