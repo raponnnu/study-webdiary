@@ -25,6 +25,12 @@
 			"path": "golang.org/x/crypto/bcrypt",
 			"revision": "78000ba7a073cafc0278790f6bce552a0f25850e",
 			"revisionTime": "2020-03-02T20:51:17Z"
+		},
+		{
+			"checksumSHA1": "d0gyLhXz1AdyavVdPYI19MnbbPQ=",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "78000ba7a073cafc0278790f6bce552a0f25850e",
+			"revisionTime": "2020-03-02T20:51:17Z"
 		}
 	],
 	"rootPath": "study-webdiary"
