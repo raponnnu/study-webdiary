@@ -1,24 +1,24 @@
 {
 	"comment": "",
-	"ignore": "test",
+	"ignore": "",
 	"package": [
 		{
-			"checksumSHA1": "/b8Fw69AsJ3HgYjSxafhU5VrgGE=",
-			"path": "golang.org/x/sys/cpu",
-			"revision": "5c8b2ff67527cb88b770f693cebf3799036d8bc0",
-			"revisionTime": "2020-03-02T10:13:05Z"
+			"checksumSHA1": "nJxBV0j4u6qTvDaaSEqjJTDjDGw=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "c3e18be99d19e6b3e8f1559eea2c161a665c4b6b",
+			"revisionTime": "2019-08-25T01:20:11Z"
 		},
 		{
-			"checksumSHA1": "WMdEuWDsHDpqcnYBf72fV2B+SDM=",
-			"path": "golang.org/x/sys/unix",
-			"revision": "5c8b2ff67527cb88b770f693cebf3799036d8bc0",
-			"revisionTime": "2020-03-02T10:13:05Z"
+			"checksumSHA1": "mNnqph2wZ9ePlGeE5nvHKhmQooQ=",
+			"path": "github.com/lib/pq",
+			"revision": "9eb3fc897d6fd97dd4aad3d0404b54e2f7cc56be",
+			"revisionTime": "2020-01-16T17:15:13Z"
 		},
 		{
-			"checksumSHA1": "ZYmvJ1qqXG5KHRKVs1tRsRMxj/Q=",
-			"path": "golang.org/x/sys/windows",
-			"revision": "5c8b2ff67527cb88b770f693cebf3799036d8bc0",
-			"revisionTime": "2020-03-02T10:13:05Z"
+			"checksumSHA1": "IKKJNZLwq9wpHAKlrEG3e2qctf4=",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "78000ba7a073cafc0278790f6bce552a0f25850e",
+			"revisionTime": "2020-03-02T20:51:17Z"
 		}
 	],
 	"rootPath": "study-webdiary"
