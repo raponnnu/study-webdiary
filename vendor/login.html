@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>ログイン</title>
+        <style>
+            input {display: block;}
+            ul {list-style: none;}
+        </style>
+        <link rel = "stylesheet"
+              href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel = "stylesheet"
+              href="style.css">
+    </head>
+    <body>
+    <h1>
+        <a href="start" id="titlelogo">学習Web日報</a>
+    </h1>
+        <p>ログイン</p>
+        <form id="user">
+            <dt>ユーザー名 </dt>
+            <dd><input type="text" id="name" size="20" maxlength="16" /></dd>
+            <dt>パスワード</dt>
+            <dd><input type="password" id="password" size="20" maxlength="16"></dd>
+            <div id="passerr"></div>
+            <input type="submit" value="確定" />
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+        </script>
+        <script>
+            $(function(){
+                var socket = null;
+                var name = $("#name");
+                var password = $("#password");
+                $("#user").submit(function(){
+                    if (!name.val()) return false
+                    if (!password.val()) return false
+                    if (!socket){
+                        alert("エラー：WebSocket接続が行われていません")
+                    }
+                    var greet = document.getElementById('passerr')
+                    if(password.val().length < 8 || password.val().length > 16){
+                        passerr.innerHTML = 'パスワードの文字数が条件と一致しません';
+                        return false;
+                    }else{
+                        passerr.innerHTML = '';
+                        socket.send(JSON.stringify({"Name": name.val(),"Password": password.val()}));
+                        return false;
+                    }
+                })
+                if (!window["WebSocket"]){
+                    alert("エラー：WebSocketに対応していないブラウザです");
+                }else{
+                    socket = new WebSocket("ws://{{.Host}}/loginuser");
+                    socket.onmessage = function(e){
+                        var user = eval("(" + e.data + ")")
+                        var location;
+                        if (user.Check) {
+                            document.cookie = "name=" + name.val();
+                            document.cookie = "password=" + password.val();
+                            alert("認証成功。");
+                            window.location.href = 'http://{{.Host}}/mypage';
+                        }else{
+                            alert("ユーザー名またはパスワードが一致しません。");
+                            window.location.href = 'http://{{.Host}}/login';
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

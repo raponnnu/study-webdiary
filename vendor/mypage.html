@@ -1,0 +1,185 @@
+<html>
+    <head>
+        <title>{{.Name}}のマイページ</title>
+        <style>
+            input {display: block;}
+            ul {list-style: none;}
+        </style>
+        <link rel = "stylesheet"
+         href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel = "stylesheet"
+              href="style.css">
+    </head>
+    <body>
+    <h1>
+        <a href="start" id="titlelogo">学習Web日報</a>
+    </h1>
+        <form id="mydata" name="mydata">
+        <p>{{.Name}} のマイページ</p>
+            <div>生まれた年：{{.Year}}    </div>
+            <div>性別：{{.Sex}}</div>
+            <dt>一言：</dt>
+            <dd>{{.Comment}}</dd>
+            <br>
+            <p><a href="edituser"  class="options">ユーザー編集</a>
+                <a href="delete" class="options" >ユーザーデータ削除</a>
+                <a href="logout"  class="options">ログアウト</a></p>
+            <p><a href="editdiary"  class="options">日記入力・編集画面へ</a></p>
+        <select id="year" name="nyear">
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+        </select>年
+        <select id="month" name="nmonth">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>月
+        <input type="button" value="確定" onclick="clickBtn1()" class="setdata">
+        <div><div id="cmyear"  class="setdata"></div>年<div id="cmmonth"  class="setdata"></div>月</div>
+        <table border="1" id="table">
+        </table>
+        </form>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+        </script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+        <script>        
+            function clickBtn1(){
+                const yeari = document.mydata.nyear;
+	            const num1 = yeari.selectedIndex;
+	            const yearstring = yeari.options[num1].value;
+                    
+                const monthi = document.mydata.nmonth;
+	            const num2 = monthi.selectedIndex;
+	            const monthstring = monthi.options[num2].value;
+                    
+                var date = yearstring + "-" + (("00"+monthstring).slice(-2)) + "-01" ;
+                socket.send(JSON.stringify({"Day":date}));
+            }
+            
+            // 表の動的作成
+            function makeTableLine(tableId,diarys){
+                // 表の作成開始
+                var rows=[];
+                var table = document.createElement("table");
+                rows.push(table.insertRow(-1));  // 行の追加
+                cell=rows[0].insertCell(-1);
+                cell.appendChild(document.createTextNode("日付"));
+                cell=rows[0].insertCell(-1);
+                cell.appendChild(document.createTextNode("学習時間"));
+                cell=rows[0].insertCell(-1);
+                cell.appendChild(document.createTextNode("学習内容"));
+                
+                // 指定したdiv要素に表を加える
+                document.getElementById(tableId).appendChild(table);
+            }
+            
+            // 表の動的作成
+            function makeTable(tableId,diarys){
+                // 表の作成開始
+                var rows=[];
+                var table = document.createElement("table");
+                var array = ['日', '月', '火','水','木','金','土'];
+
+                rows.push(table.insertRow(-1));  // 行の追加
+                cell=rows[0].insertCell(-1);
+                var nowday = diarys.Day.slice(0,7) + "-" + ("00"+String(diarys.Day.slice(8,10))).slice(-2);
+                cell.appendChild(document.createTextNode(String(diarys.Day.slice(-2)) + "(" + array[moment(nowday,"YYYY-MM-DD").day()] +")"));
+                    
+                cell=rows[0].insertCell(-1);
+                if(diarys.Hour == 0 && diarys.Minute == 0){
+                    cell.appendChild(document.createTextNode("----"));
+                }else{
+                    cell.appendChild(document.createTextNode(diarys.Hour + " h " + diarys.Minute + " m "));
+                }
+                
+                cell=rows[0].insertCell(-1);
+                var fragment = document.createDocumentFragment();
+                // 新しい div 要素を作成します 
+                var newDiv = document.createElement("div"); 
+                var newDet = document.createElement("details"); 
+                // 新しい div 要素を作成します 
+                var newSum = document.createElement("summary"); 
+                // いくつかの内容を与えます 
+                var newContent = document.createTextNode(diarys.Topic); 
+                var newContent2 = document.createTextNode(diarys.Comment); 
+                // テキストノードを新規作成した div に追加します
+                newSum.appendChild(newContent); 
+                newDiv.appendChild(newContent2); 
+                fragment.appendChild(newSum)
+                fragment.appendChild(newDiv)
+                newDet.appendChild(fragment); 
+                cell.appendChild(newDet);
+                
+                // 指定したdiv要素に表を加える
+                document.getElementById(tableId).appendChild(table);
+                document.getElementById(tableId).appendChild(table);
+            }
+            
+            window.onload = function(){ 
+            if (!window["WebSocket"]){
+                alert("エラー：WebSocketに対応していないブラウザです");
+            }else{
+                socket = new WebSocket("ws://{{.Host}}/mydata");
+                moment.locale('ja');
+                var days = moment().format('YYYY-MM-DD');
+	            socket.onopen = function( event ) {
+                    socket.send(JSON.stringify({"Day":days}));
+                }
+                socket.onmessage = function(e){
+                    var diarys = eval("(" + e.data + ")");
+                    if (diarys.Check){
+                        while(table.hasChildNodes()){
+                            table.removeChild(table.firstChild);
+                        }
+                        const p1 = document.createElement("p");
+                        if (cmyear.hasChildNodes()){
+                            cmyear.removeChild(cmyear.firstChild);
+                        }
+                        var startyear = Number(diarys.Day.slice(0,4));
+                        document.mydata.nyear.selectedIndex = startyear - 2018;
+                        const textyear = document.createTextNode(startyear);
+                        p1.appendChild(textyear);
+                        cmyear.appendChild(p1);
+                                
+                        const p2 = document.createElement("p");
+                        if (cmmonth.hasChildNodes()){
+                            cmmonth.removeChild(cmmonth.firstChild);
+                        }
+                        var startmonth = Number(diarys.Day.slice(5,7));
+                        document.mydata.nmonth.selectedIndex = startmonth - 1;
+                        const textmonth = document.createTextNode(startmonth);
+                        p2.appendChild(textmonth);
+                        cmmonth.appendChild(p2);  
+                        // 表の動的作成 
+                        makeTableLine("table",diarys);
+                        var daycnt = moment(diarys.Day.slice(0,7), "YYYY-MM").daysInMonth()
+                        var days = diarys.Day;
+                        socket.send(JSON.stringify({"Check":true,"Day":days,"Days":daycnt}));
+                    }else{
+                        makeTable("table",diarys);
+                    }
+                }
+            }
+            };
+        </script>
+    </body>
+</html>
