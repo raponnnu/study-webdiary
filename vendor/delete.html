@@ -46,7 +46,7 @@
                 if (!window["WebSocket"]){
                     alert("エラー：WebSocketに対応していないブラウザです");
                 }else{
-                    socket = new WebSocket("ws://{{.Host}}/deleteuser");
+                    socket = new WebSocket("wss://{{.Host}}/deleteuser");
                     socket.onmessage = function(e){
                         var user = eval("(" + e.data + ")")
                         var location;
