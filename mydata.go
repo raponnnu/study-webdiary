@@ -9,6 +9,8 @@ import(
 )
 
 
+
+
 type clientdata struct{
     //socket はこのクライアントのためのWebSocketです
     socket *websocket.Conn
@@ -63,26 +65,29 @@ func (c *clientdata) read(r *http.Request){
             diarys.Check = true
             if err := c.socket.WriteJSON(&diarys); err == nil{
                 breaker := false
-                j := 0;
                 for{
                     if err := c.socket.ReadJSON(&diarys); err == nil{
-                fmt.Println("soko:",diarys.Day[0:8])
+                    fmt.Println("soko:",diarys.Day[0:8])
                         for i:=1;i<=diarys.Days;i++{
-                            im, _ := strconv.Atoi(diarys.Diary[j].Day[8:10])
-                            fmt.Println("im:",diarys.Day[0:8])
-                            if(im == i){
-                                diarys.Day = diarys.Day[0:8] + diarys.Diary[j].Day[8:10]
-                                diarys.Hour = diarys.Diary[j].Hour
-                                diarys.Minute = diarys.Diary[j].Minute
-                                diarys.Topic = diarys.Diary[j].Topic
-                                diarys.Comment = diarys.Diary[j].Comment
-                                diarys.Check = false
-                                if err := c.socket.WriteJSON(&diarys); err == nil{
-                                    j++
-                                }else{
-                                    break
+                            checksend := false
+                            for j:=0;j<len(diarys.Diary);j++{
+                                im, _ := strconv.Atoi(diarys.Diary[j].Day[8:10])
+                                fmt.Println("im:",diarys.Day[0:8])
+                                if(im == i){
+                                    diarys.Day = diarys.Day[0:8] + diarys.Diary[j].Day[8:10]
+                                    diarys.Hour = diarys.Diary[j].Hour
+                                    diarys.Minute = diarys.Diary[j].Minute
+                                    diarys.Topic = diarys.Diary[j].Topic
+                                    diarys.Comment = diarys.Diary[j].Comment
+                                    diarys.Check = false
+                                    checksend = true
+                                    if err := c.socket.WriteJSON(&diarys); err == nil{
+                                    }else{
+                                        break
+                                    }
                                 }
-                            }else{
+                            }
+                            if !checksend{
                                 diarys.Day = diarys.Day[0:8] + fmt.Sprintf("%02d", i)
                                 diarys.Hour = 0
                                 diarys.Minute = 0
@@ -92,6 +97,7 @@ func (c *clientdata) read(r *http.Request){
                                 if err := c.socket.WriteJSON(&diarys); err != nil{
                                     break
                                 }
+                                
                             }
                             breaker = true
                         }
