@@ -138,7 +138,7 @@
             if (!window["WebSocket"]){
                 alert("エラー：WebSocketに対応していないブラウザです");
             }else{
-                socket = new WebSocket("ws://{{.Host}}/mydata");
+                socket = new WebSocket("wss://{{.Host}}/mydata");
                 moment.locale('ja');
                 var days = moment().format('YYYY-MM-DD');
 	            socket.onopen = function( event ) {
