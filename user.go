@@ -1,5 +1,6 @@
 package main
 
+
 type user struct{
     Name string
     Password string
