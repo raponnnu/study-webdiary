@@ -1,5 +1,6 @@
 package main
 
+
 type diary struct{
     Name string
     Day string
